@@ -1,0 +1,44 @@
+{
+    "employee":[
+        {
+            "id": 0,
+            "firstname": "abebe",
+            "lastname": "alemu",
+            "age": 23,
+            "gender": "male",
+            "height": "1m"
+        },
+        {
+            "id": 1,
+            "firstname": "kenenisa",
+            "lastname": "bekele",
+            "age": 29,
+            "gender": "male",
+            "height": "1m"
+        },
+        {
+            "id": 2,
+            "firstname": "abebe",
+            "lastname": "alemu",
+            "age": 23,
+            "gender": "male",
+            "height": "1m"
+        },
+        {
+            "id": 3,
+            "firstname": "kelemework",
+            "lastname": "alemu",
+            "age": 23,
+            "gender": "male",
+            "height": "1m"
+        },
+        {
+            "id": 4,
+            "firstname": "helen",
+            "lastname": "teklay",
+            "age": 33,
+            "gender": "female",
+            "height": "1m"
+        }
+    ]
+}
