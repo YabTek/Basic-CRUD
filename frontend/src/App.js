@@ -37,10 +37,7 @@ function App() {
   let data  = useSelector((state)=>state.listData)
   console.log('data in list',data)
 
-  const product = {
-    name: "abe",
-    price: "1222"
-  }
+ 
   useEffect(()=>{
        dispatch(Employee_list())
   },[])
@@ -56,10 +53,10 @@ function App() {
        `}>
        Employee control app</h1>
         
-      <Add onClick={()=>dispatch(add_Employee(product))}>Add employee</Add>
+      <Add onClick={()=>dispatch(add_Employee())}>Add employee</Add>
       < Count>count: {counter.length}</Count>
 
-      <Card  className={css`
+      {/* <Card  className={css`
        color: white;
        padding: 16px;
        background-color: hotpink;
@@ -67,8 +64,7 @@ function App() {
        font-size: 30px;
        `}>
   <Heading>Card</Heading>
-</Card>
-<Delete onClick={()=>dispatch(delete_Employee(product.name))}>Delete employee</Delete>
+</Card> */}
 <Item/>
 
 
