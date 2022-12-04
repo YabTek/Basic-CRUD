@@ -5,6 +5,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { Employee_list } from './redux/actions/listAction';
 import Item from './Item';
 import {Heading,Card} from 'rebass/styled-components'
+import { useEffect } from 'react';
 
 
 const Add = styled.button`
@@ -31,7 +32,7 @@ background-color: red;
 function App() {
 
   const dispatch = useDispatch()
-  const counter = useSelector((state) => state)
+  const counter = useSelector((state) => state.employeeData)
   console.log('data in Count',counter)
   let data  = useSelector((state)=>state.listData)
   console.log('data in list',data)
@@ -40,6 +41,9 @@ function App() {
     name: "abe",
     price: "1222"
   }
+  useEffect(()=>{
+       dispatch(Employee_list())
+  },[])
 
   return (
     <>
@@ -51,6 +55,7 @@ function App() {
        font-size: 32px;
        `}>
        Employee control app</h1>
+        
       <Add onClick={()=>dispatch(add_Employee(product))}>Add employee</Add>
       < Count>count: {counter.length}</Count>
 
@@ -64,12 +69,10 @@ function App() {
   <Heading>Card</Heading>
 </Card>
 <Delete onClick={()=>dispatch(delete_Employee(product.name))}>Delete employee</Delete>
-<Delete onClick={()=>dispatch(Employee_list())}>employee list</Delete>
-
 <Item/>
 
 
-
+  
     </>
   )}
 

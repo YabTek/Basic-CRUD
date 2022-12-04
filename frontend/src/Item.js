@@ -19,22 +19,18 @@ import {
 const Item = () => {
     const [hidden, setHidden] = useState(true);
     let data  = useSelector((state)=>state.listData)
-    console.log('data in list',data)
   return (
    
-  
     <div>{
-        data.map((emp) => (
-      <Flex alignItems='center' px={3} py={4} bg = 'primary'>
+        data.map((emp,k) => (
+      <Flex key = {k} alignItems='center' px={3} py={4} bg = 'primary'>
          <Heading>{emp.firstname}</Heading>
 
      <Dropdown>
-
-      <button  dropdownToggle onClick={() => setHidden(!hidden)}>
-
+      <button  dropdowntoggle = "true" onClick={() => setHidden(!hidden)}>
         <ArrowDropDownIcon/>
       </button>
-      <DropdownMenu hidden={hidden} toggle={() => setHidden(!hidden)}>
+      <DropdownMenu hidden={hidden} toggle={() => setHidden(hidden)}>
         <DropdownItem>age:{emp.age}</DropdownItem>
         <DropdownItem>gender:{emp.gender}</DropdownItem>
         <DropdownItem>height:{emp.height}</DropdownItem>
