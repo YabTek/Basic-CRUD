@@ -1,5 +1,4 @@
-import React from 'react'
-import {useState} from 'react'
+import {React,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { css } from '@emotion/css'
 
@@ -9,7 +8,7 @@ import {
     DropdownItem,
     DropdownMenu,
   } from 'styled-dropdown-component';
-  import { add_Employee,delete_Employee } from '../redux/actions/empAction';
+  import { delete_Employee } from '../redux/actions/employeeAction';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
@@ -23,19 +22,19 @@ import {
 
 const Items = () => {
     const [hidden, setHidden] = useState(true);
-    let data  = useSelector((state)=>state.listData)
+    let data  = useSelector((state)=>state.employeeReducer)
     const dispatch = useDispatch()
 
   return (
    
     <div className={css`
     margin: 60px; `}>{
-        data.map((emp,k) => (
+        data.map((emp) => ( 
       <Flex className={css`
       border: 1px solid #ccc;
       border-radius: 10px;
       height: 90px;
-      `} key = {k} alignItems='center' px={3} py={4} bg = 'primary'>
+      `} key = {data.id} alignItems='center' px={3} py={4} bg = 'primary'>
          <Heading>{emp.firstname}</Heading>
 
      <Dropdown>
@@ -64,7 +63,7 @@ const Items = () => {
   color:red;
   margin-left: 12px;
   `} 
-  onClick={()=>dispatch(delete_Employee(emp.id))}/>
+  onClick={()=>dispatch(delete_Employee({id: emp.id}))}/>
 </Flex>))}
 
     </div>
