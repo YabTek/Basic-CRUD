@@ -19,12 +19,12 @@ import {
   } from 'rebass/styled-components'
   import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
   import EditIcon from '@mui/icons-material/Edit';
-
+  
 const Items = () => {
     const [hidden, setHidden] = useState(true);
     let data  = useSelector((state)=>state.employeeReducer)
     const dispatch = useDispatch()
-
+ 
   return (
    
     <div className={css`
