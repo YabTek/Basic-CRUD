@@ -15,11 +15,11 @@ const Items = ({emp}) => {
  
   return (
     <div className={css`
-    margin: 60px; `}>
+    margin: 40px 60px; `}>
       <Flex className={css`
       border: 1px solid #ccc;
       border-radius: 10px;
-      height: 90px;
+      height: 85px;
       `} alignItems='center' px={3} py={4} bg = 'primary'>
         <Flex>
         <Heading>{emp.firstname}</Heading>

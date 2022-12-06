@@ -10,11 +10,7 @@ export function* onRenderSaga(data){
 export function* onRender(){
     yield takeLatest(ADD_EMPLOYEE,onRenderSaga) 
 }
-export function* onRemoveSaga({data:{id}}){
-//     let data = fetch('http://localhost:3500/employee');
-// data = data.json()
-// console.log(data)
-
+export function* onRemoveSaga({data:{id}}){ 
     yield  put(delete_saga(id))
 }
 

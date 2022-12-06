@@ -4,8 +4,7 @@ import {ADD_EMPLOYEE,DELETE_EMPLOYEE,UPDATE_EMPLOYEE,
 ,DELETE_EMPLOYEE_SAGA,UPDATE_EMPLOYEE_SAGA} from '../constants'
 
 export const add_Employee = (data) =>{
-    console.log('add employee',data)
-    return{
+    return {
         type: ADD_EMPLOYEE,
         data: data
     }
