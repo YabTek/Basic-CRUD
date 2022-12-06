@@ -3,12 +3,10 @@ import { ADD_EMPLOYEE,DELETE_EMPLOYEE,
 
 async function getData(url) {
     const response = await fetch(url);
-      
     return response.json();
       }
-      
-    const data = await getData('http://localhost:3500/employee');
-    console.log({...data.firstname}) 
+    const fetchedData = await getData('http://localhost:3500/employee');
+    console.log(fetchedData[0].firstname) 
 
 export const employeeReducer = (data = [],action) =>{
     

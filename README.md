@@ -1,4 +1,5 @@
 This repo is a test project for Addis Software internship application.
 It will perform basic CRUD operations.
-Tools: -react,redux,redux saga,react emotion, styled system for frontend, 
-       -JSONPlaceholder for backend, 
+
+
+Tools: react,redux,redux saga,react emotion, styled system for frontend and JSONPlaceholder for backend. 
