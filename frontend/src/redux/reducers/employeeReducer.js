@@ -8,16 +8,16 @@ async function getData(url) {
     const fetchedData = await getData('http://localhost:3500/employee');
     console.log(fetchedData[0].firstname) 
 
-export const employeeReducer = (data = [],action) =>{
+export const employeeReducer = (state = fetchedData,action) =>{
     
     let addedEmployee;
     switch(action.type){
         case ADD_EMPLOYEE_SAGA:
-            addedEmployee = [...data]
+            addedEmployee = [...state]
             addedEmployee.push(action.data)  
             return addedEmployee
         case DELETE_EMPLOYEE_SAGA:
-                addedEmployee = [...data]
+                addedEmployee = [...state]
                 addedEmployee =  addedEmployee.filter((emp) => emp.id !== action.data)
                 return addedEmployee
         // case UPDATE_TODO_SAGA:
@@ -37,6 +37,6 @@ export const employeeReducer = (data = [],action) =>{
         //          return [...action.data]
             
         default:
-            return data
+            return state
     }
 }
