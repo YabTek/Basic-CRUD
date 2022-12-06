@@ -1,41 +1,31 @@
 import {React,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { css } from '@emotion/css'
-
-
-import {
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-  } from 'styled-dropdown-component';
-  import { delete_Employee } from '../redux/actions/employeeAction';
-
+import { Dropdown, DropdownItem, DropdownMenu} from 'styled-dropdown-component';
+import { delete_Employee } from '../redux/actions/employeeAction';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import {
-    Box,
-    Flex,
-    Heading,
-    
-  } from 'rebass/styled-components'
-  import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-  import EditIcon from '@mui/icons-material/Edit';
+import {Box,Flex,Heading} from 'rebass/styled-components'
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import EditIcon from '@mui/icons-material/Edit';
   
-const Items = () => {
+const Items = ({emp}) => {
     const [hidden, setHidden] = useState(true);
-    let data  = useSelector((state)=>state.employeeReducer)
+    // let data  = useSelector((state)=>state.employeeReducer)
     const dispatch = useDispatch()
  
   return (
-   
     <div className={css`
-    margin: 60px; `}>{
-        data.map((emp) => ( 
+    margin: 60px; `}>
       <Flex className={css`
       border: 1px solid #ccc;
       border-radius: 10px;
       height: 90px;
-      `} key = {data.id} alignItems='center' px={3} py={4} bg = 'primary'>
-         <Heading>{emp.firstname}</Heading>
+      `} alignItems='center' px={3} py={4} bg = 'primary'>
+        <Flex>
+        <Heading>{emp.firstname}</Heading>
+        <Heading  px={2} >{emp.lastname}</Heading>
+        </Flex>
+         
 
      <Dropdown>
       <button  className={css`
@@ -64,7 +54,7 @@ const Items = () => {
   margin-left: 12px;
   `} 
   onClick={()=>dispatch(delete_Employee({id: emp.id}))}/>
-</Flex>))}
+</Flex>
 
     </div>
   )
