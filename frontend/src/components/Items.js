@@ -1,5 +1,5 @@
 import {React,useState} from 'react'
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { css } from '@emotion/css'
 import { Dropdown, DropdownItem, DropdownMenu} from 'styled-dropdown-component';
 import { delete_Employee,update_Employee } from '../redux/actions/employeeAction';
@@ -7,7 +7,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {Box,Flex,Heading} from 'rebass/styled-components'
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import EditIcon from '@mui/icons-material/Edit';
-  
+import { Tooltip } from '@mui/material';
+ 
+
 const Items = ({emp}) => {
     const [hidden, setHidden] = useState(true);
     const [firstname,setFirstname] = useState(emp.firstname);    
@@ -15,7 +17,6 @@ const Items = ({emp}) => {
     const [age,setAge] = useState(emp.age);
     const [gender,setGender] = useState(emp.gender);
     const [height,setHeight] = useState(emp.height);
-
     const [update,setUpdate] = useState(false)
     const dispatch = useDispatch()
 
@@ -27,7 +28,6 @@ const Items = ({emp}) => {
         }
       })
       dispatch(delete_Employee({id: emp.id}))
-
     }
 
   const handleUpdate =  async(emp) => {
@@ -45,15 +45,14 @@ const Items = ({emp}) => {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-        },
-        
+        }, 
       });
       setFirstname(emp.firstname)
       setLastname(emp.lastname)
       setAge(emp.age)
       setGender(emp.gender)
       setHeight(emp.height)
-     
+
       dispatch(update_Employee({
         ...emp,
         firstname:firstname,
@@ -61,17 +60,11 @@ const Items = ({emp}) => {
         age: age,
         gender: gender,
         height: height
-      }))
-     
+      })) 
     }
     setUpdate(!update)
-
-     
-   
-
     }
      
-  
   
   return (
     <div className={css`
@@ -85,8 +78,6 @@ const Items = ({emp}) => {
         <Heading>{emp.firstname}</Heading>
         <Heading  px={2} >{emp.lastname}</Heading>
         </Flex>
-         
-
      <Dropdown>
       <button  className={css`
       border: 1px solid #ddd;
@@ -94,37 +85,40 @@ const Items = ({emp}) => {
       padding: 1px;
       margin-left: 20px;
       background-color: #ddd`} dropdowntoggle = "true" onClick={() => setHidden(!hidden)}>
-        <ArrowDropDownIcon/>
+       <Tooltip title="Details">
+         <ArrowDropDownIcon/>
+       </Tooltip>
       </button>
       <DropdownMenu hidden={hidden} toggle={() => setHidden(hidden)}>
-        <DropdownItem>age:{emp.age}</DropdownItem>
-        <DropdownItem>gender:{emp.gender}</DropdownItem>
-        <DropdownItem>height:{emp.height}</DropdownItem>
+        <DropdownItem>age: {emp.age}</DropdownItem>
+        <DropdownItem>gender: {emp.gender}</DropdownItem>
+        <DropdownItem>height: {emp.height}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  <Box sx={{
-    mx: 'auto',
-    px: 3,
-  }} />
-  { update?  (
-    <div>
+  <Box sx={{mx: 'auto', px: 3}} />
+   {update?  (
+    <div className={css`
+    display:flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 200px;
+    `}>
      <input placeholder='firstname'  value = {firstname} onChange = {(e) => setFirstname(e.target.value)}/>
      <input placeholder='lastname' value = {lastname} onChange = {(e) => setLastname(e.target.value)}/>
      <input placeholder = 'age' value = {age} onChange = {(e) => setAge(e.target.value)}/>
      <input placeholder = 'gender' value = {gender} onChange = {(e) => setGender(e.target.value)}/>
      <input placeholder = 'height' value = {height} onChange = {(e) => setHeight(e.target.value)}/>
-</div>
-     ) : ("")}
- 
-  <EditIcon onClick = {()=>handleUpdate(emp)}/>
- 
-  <DeleteForeverOutlinedIcon className = {css`
-  color:red;
-  margin-left: 12px;
+</div>) : ("")}
+  <Tooltip title="Edit">
+    <EditIcon onClick = {()=>handleUpdate(emp)}/>
+ </Tooltip>
+ <Tooltip title="Delete">
+    <DeleteForeverOutlinedIcon className = {css`
+    color:red;
+    margin-left: 12px;
   `} onClick = {() => handleDelete(emp)}/>
-  {/* // onClick={()=>dispatch(delete_Employee({id: emp.id}))} */}
+  </Tooltip>
 </Flex>
-
     </div>
   )
 }

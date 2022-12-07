@@ -1,12 +1,20 @@
 {
   "employee": [
     {
-      "firstname": "uggh",
-      "lastname": "",
-      "age": "",
-      "gender": "",
-      "height": "",
-      "id": 3
+      "firstname": "Helen",
+      "lastname": "Samuel",
+      "age": "35",
+      "gender": "Female",
+      "height": "163m",
+      "id": 1
+    },
+    {
+      "firstname": "Biniyam",
+      "lastname": "Takele",
+      "age": "33",
+      "gender": "Male",
+      "height": "175m",
+      "id": 2
     }
   ]
 }

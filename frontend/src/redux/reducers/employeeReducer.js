@@ -20,15 +20,16 @@ export const employeeReducer = (state = fetchedData,action) =>{
                 return addedEmployee
         case UPDATE_EMPLOYEE_SAGA:
                addedEmployee = [...state]
-                    let idx = -1
-                    for(let i = 0; i < addedEmployee.length; i++){
-                        idx ++
+                    let i = 0;
+                    let position = -1
+                    for(i ; i < addedEmployee.length; i++){
+                        position ++
                         if(addedEmployee[i].id === action.data.id){
                             break
                         }
                     }
-                    if(idx !== -1){
-                        addedEmployee[idx] = action.data
+                    if(position !== -1){
+                        addedEmployee[position] = action.data
                     }
                     return addedEmployee
         default:
