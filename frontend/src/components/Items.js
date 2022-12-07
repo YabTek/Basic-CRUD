@@ -10,9 +10,24 @@ import EditIcon from '@mui/icons-material/Edit';
   
 const Items = ({emp}) => {
     const [hidden, setHidden] = useState(true);
+    const [people,setPeople] = useState("") 
     // let data  = useSelector((state)=>state.employeeReducer)
     const dispatch = useDispatch()
- 
+    const handleDelete = async (emp) => {
+      await fetch(`http://localhost:3500/employee/${emp.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      dispatch(delete_Employee({id: emp.id}))
+
+    }
+
+  
+     
+  
+  
   return (
     <div className={css`
     margin: 40px 60px; `}>
@@ -52,8 +67,8 @@ const Items = ({emp}) => {
   <DeleteForeverOutlinedIcon className = {css`
   color:red;
   margin-left: 12px;
-  `} 
-  onClick={()=>dispatch(delete_Employee({id: emp.id}))}/>
+  `} onClick = {() => handleDelete(emp)}/>
+  {/* // onClick={()=>dispatch(delete_Employee({id: emp.id}))} */}
 </Flex>
 
     </div>

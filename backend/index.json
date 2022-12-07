@@ -1,14 +1,6 @@
 {
   "employee": [
     {
-      "id": 0,
-      "firstname": "abebe",
-      "lastname": "alemu",
-      "age": 23,
-      "gender": "male",
-      "height": "1m"
-    },
-    {
       "id": 1,
       "firstname": "kenenisa",
       "lastname": "bekele",
