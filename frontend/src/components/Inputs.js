@@ -61,6 +61,7 @@ function Inputs() {
         Accept: 'application/json',
       }, 
     });
+    window.location.reload()
 
     dispatch(add_Employee({
       firstname, lastname, age, gender, height

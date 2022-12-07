@@ -61,6 +61,7 @@ const Items = ({emp}) => {
         gender: gender,
         height: height
       })) 
+      window.location.reload()
     }
     setUpdate(!update)
     }
