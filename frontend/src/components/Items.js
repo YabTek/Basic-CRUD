@@ -2,7 +2,7 @@ import {React,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux';
 import { css } from '@emotion/css'
 import { Dropdown, DropdownItem, DropdownMenu} from 'styled-dropdown-component';
-import { delete_Employee } from '../redux/actions/employeeAction';
+import { delete_Employee,update_Employee } from '../redux/actions/employeeAction';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {Box,Flex,Heading} from 'rebass/styled-components'
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
@@ -10,9 +10,15 @@ import EditIcon from '@mui/icons-material/Edit';
   
 const Items = ({emp}) => {
     const [hidden, setHidden] = useState(true);
-    const [people,setPeople] = useState("") 
-    // let data  = useSelector((state)=>state.employeeReducer)
+    const [firstname,setFirstname] = useState(emp.firstname);    
+    const [lastname,setLastname] = useState(emp.lastname);
+    const [age,setAge] = useState(emp.age);
+    const [gender,setGender] = useState(emp.gender);
+    const [height,setHeight] = useState(emp.height);
+
+    const [update,setUpdate] = useState(false)
     const dispatch = useDispatch()
+
     const handleDelete = async (emp) => {
       await fetch(`http://localhost:3500/employee/${emp.id}`, {
         method: "DELETE",
@@ -24,7 +30,46 @@ const Items = ({emp}) => {
 
     }
 
-  
+  const handleUpdate =  async(emp) => {
+    if(update){
+      await fetch(`http://localhost:3500/employee/${emp.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          firstname : firstname,
+          lastname: lastname,
+          age: age,
+          gender: gender,
+          height: height
+      }
+        ),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        
+      });
+      setFirstname(emp.firstname)
+      setLastname(emp.lastname)
+      setAge(emp.age)
+      setGender(emp.gender)
+      setHeight(emp.height)
+     
+      dispatch(update_Employee({
+        ...emp,
+        firstname:firstname,
+        lastname: lastname,
+        age: age,
+        gender: gender,
+        height: height
+      }))
+     
+    }
+    setUpdate(!update)
+
+     
+   
+
+    }
      
   
   
@@ -61,9 +106,18 @@ const Items = ({emp}) => {
     mx: 'auto',
     px: 3,
   }} />
-
-    <EditIcon/>
-
+  { update?  (
+    <div>
+     <input placeholder='firstname'  value = {firstname} onChange = {(e) => setFirstname(e.target.value)}/>
+     <input placeholder='lastname' value = {lastname} onChange = {(e) => setLastname(e.target.value)}/>
+     <input placeholder = 'age' value = {age} onChange = {(e) => setAge(e.target.value)}/>
+     <input placeholder = 'gender' value = {gender} onChange = {(e) => setGender(e.target.value)}/>
+     <input placeholder = 'height' value = {height} onChange = {(e) => setHeight(e.target.value)}/>
+</div>
+     ) : ("")}
+ 
+  <EditIcon onClick = {()=>handleUpdate(emp)}/>
+ 
   <DeleteForeverOutlinedIcon className = {css`
   color:red;
   margin-left: 12px;

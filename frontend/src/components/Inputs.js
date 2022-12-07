@@ -42,7 +42,6 @@ function Inputs() {
   const [age,setAge] = useState("");
   const [gender,setGender] = useState("");
   const [height,setHeight] = useState("");
-  const [postData,setPostdata] = useState("");
   const dispatch = useDispatch()
   const counter = useSelector((state) => state.employeeReducer)
   console.log('data in Count',counter)
@@ -50,9 +49,7 @@ function Inputs() {
   console.log('data in list',data)
   let value = counter.length > 1? "employees" : "employee"
  
-  // useEffect(()=>{
-  //      dispatch(Employee_list())
-  // })
+ 
  const handleClick = async() => {
   
     const response = await fetch('http://localhost:3500/employee', {
@@ -72,9 +69,9 @@ function Inputs() {
       
     });
 
-    const result = await response.json();
-    console.log('result is: ', JSON.stringify(result, null, 4));
-    setPostdata(result);
+    // const result = await response.json();
+    // console.log('result is: ', JSON.stringify(result, null, 4));
+   // setPostdata(result);
     dispatch(add_Employee({
       firstname, lastname, age, gender, height
      }))
